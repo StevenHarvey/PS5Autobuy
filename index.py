@@ -1,18 +1,20 @@
 #handles the main processes
 import bs4, requests, urllib.request, sys, os
-sys.path.insert(1, r'C:\Users\nolan\Documents\master-ps5\utils')
+sys.path.insert(1, r'utils')
 import ps5
+import loghandler
 version = '0.1'
 code_released = requests.get('https://raw.githubusercontent.com/StevenHarvey/PS5Autobuy/main/version.txt')
 def login():
     try:
         check1 = open(r'information(IMPORTANT)\completed.txt', 'r+').read()
-        if '1' in check1:
+        if 'true' in check1:
             print("Data already found! Launching now")
             ps5.main()
 
     except:
         check1 = open(r"information(IMPORTANT)\completed.txt", 'w')
+        loghandler.main("No Login Information found - Writing new Login")
         print("Note: No Data will leave this PC and Walmart.Com")
         data_write = open(r'information(IMPORTANT)\information.txt', 'r+')
         name_first = input("Insert first name:")
@@ -33,7 +35,7 @@ def login():
         data_write.write("\n"+card)
         exporation = input("Insert exporation date:")
         data_write.write("\n"+exporation)
-        check1.write("1")
+        check1.write("true")
         check1.close()
         login()
 if version in str(code_released.content):
