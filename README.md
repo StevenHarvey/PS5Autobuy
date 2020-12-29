@@ -1,2 +1,2 @@
 # PS5Autobuy
-WIP - Nothing working yet
+ABANDONED - Lack of interest due to other things taking time
